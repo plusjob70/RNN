@@ -157,19 +157,19 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='2022 DL Term Project #2')
     parser.add_argument('--data_dir', type=str, default='./Data')
     parser.add_argument('--batch_size', type=int, default=100, help="Batch size for training (default: 64)")
-    parser.add_argument('--vocab_size', type=int, default=30000, help="maximum vocab size")
+    parser.add_argument('--vocab_size', type=int, default=32000, help="maximum vocab size")
     parser.add_argument('--batch_first', type=bool, default=True, help="If true, then the model returns the batch first")
     parser.add_argument('--learning_rate', type=float, default=0.001, help="Learning rate (default: 0.001)")
-    parser.add_argument('--num_epochs', type=int, default=15, help="Number of epochs to train for (default: 5)")
+    parser.add_argument('--num_epochs', type=int, default=12, help="Number of epochs to train for (default: 5)")
     
     args = parser.parse_args()
 
     # Model hyperparameters
     input_size = args.vocab_size
     output_size = 4     # num of classes
-    embedding_dim = 256 # embedding dimension
-    hidden_dim = 32  # hidden size of RNN
-    num_layers = 2
+    embedding_dim = 512 # embedding dimension
+    hidden_dim = 32  # hidden size f RNN
+    num_layers = 1
 
     # Make Train & valid Loader
     train_dataset = TextDataset(args.data_dir, 'train', args.vocab_size)

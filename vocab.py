@@ -20,7 +20,7 @@ class Vocabulary:
         self.stop_words = None
         
         try:
-            with open('./stopwords.txt', mode='r') as f:
+            with open('stopwords.txt', mode='r') as f:
                 self.stop_words = [line.rstrip() for line in f.readlines()]
         except FileNotFoundError:
             print('stopwords.txt 없음', flush=True)
@@ -39,11 +39,14 @@ class Vocabulary:
 
     # word : 1-word
     def regularize(self, word):
+        # |(\.(?=[\s\n\r”\"]|$))
         word = re.sub(r"[\']s|’s|[(|)|,|\"|\'|‘|’|`|“|”|:|;|\[|\]|?|!]|(\.(?=[\s\n\r”\"]|$))", '', word).lower().strip()
         if word.isdigit():
             word = '<DIG>'
-        elif self.__isfloat(word):
-            word = '<FLO>'
+        # elif self.__isfloat(word):
+        #     word = '<FLO>'
+        # elif ('$' or '€' or '£') in word:
+        #     word = '<MON>'
         elif '°c' in word:
             word = '<TEM>'
         elif '°' in word:
@@ -57,7 +60,7 @@ class Vocabulary:
         return [self.regularize(tok) for tok in text.split(' ')]
 
     def load_vocabulary(self, filename):
-        df = pd.read_csv(f'./Data/{filename}')
+        df = pd.read_csv(filename)
         self.itow = dict(zip(df['idx'], df['word']))
         self.wtoi = dict(zip(df['word'], df['idx']))
 
@@ -66,7 +69,7 @@ class Vocabulary:
         word = self.itow.values()
 
         df = pd.DataFrame(data={'idx': idx, 'word': word})
-        df.to_csv(f'./Data/{filename}')
+        df.to_csv(filename)
 
     # type(sentences) : numpy.ndarray
     def build_vocabulary(self, sentences, add_unk=True, mode='train'):

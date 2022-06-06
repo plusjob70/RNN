@@ -1,103 +1,103 @@
-Test Accuracy : 0.25000
+Test Accuracy : 0.90000
 true label  |  predict label 
 -------------------------- 
-   economy   economy
-   economy   economy
- mechanics   economy
- mechanics   economy
- education   economy
-   economy   economy
- mechanics       ict
-   economy       ict
-       ict       ict
- education   economy
- mechanics   economy
- mechanics   economy
-       ict   economy
- education       ict
-       ict       ict
-   economy   economy
-   economy       ict
- mechanics       ict
-   economy   economy
- mechanics   economy
- mechanics   economy
- education       ict
-   economy       ict
-   economy       ict
- mechanics       ict
- mechanics       ict
- education       ict
- education   economy
-   economy   economy
-       ict   economy
-       ict   economy
- mechanics   economy
- education   economy
- education       ict
- education       ict
-       ict   economy
-       ict   economy
- education   economy
-       ict       ict
-       ict   economy
-       ict   economy
-       ict   economy
+ mechanics mechanics
+ education education
    economy   economy
        ict       ict
-       ict   economy
-   economy       ict
-   economy   economy
- mechanics   economy
-       ict   economy
-       ict   economy
- education   economy
- education       ict
-       ict   economy
- education   economy
-       ict   economy
-   economy   economy
-       ict   economy
        ict       ict
    economy   economy
- mechanics   economy
- mechanics   economy
+ mechanics mechanics
+   economy   economy
+ mechanics mechanics
+ education education
+   economy   economy
+       ict       ict
+   economy   economy
+ mechanics mechanics
+   economy   economy
+   economy   economy
+       ict       ict
+       ict       ict
  education       ict
-   economy       ict
+ education education
+ mechanics mechanics
+ mechanics mechanics
+   economy education
+ mechanics mechanics
+       ict       ict
+ mechanics mechanics
+       ict       ict
+ mechanics mechanics
+   economy   economy
+       ict       ict
+ mechanics mechanics
+   economy   economy
+       ict       ict
+ mechanics mechanics
+ education education
+ mechanics mechanics
+ education education
+ mechanics mechanics
+   economy   economy
+ education education
  mechanics       ict
+   economy   economy
+   economy   economy
+ mechanics mechanics
+       ict       ict
+       ict       ict
+       ict       ict
+ education education
+       ict       ict
+       ict       ict
+   economy   economy
+ education education
+ education education
+       ict       ict
    economy       ict
    economy   economy
+ mechanics mechanics
+   economy   economy
+   economy   economy
+ mechanics mechanics
+ education education
+ education education
  education   economy
+ mechanics mechanics
+   economy   economy
  mechanics       ict
-   economy       ict
- education       ict
- mechanics   economy
-   economy       ict
- education   economy
- education       ict
+       ict       ict
+       ict       ict
+ education education
+       ict       ict
+       ict       ict
    economy   economy
- mechanics       ict
- education       ict
-   economy   economy
- mechanics   economy
-       ict   economy
-   economy   economy
- mechanics   economy
-       ict   economy
- education   economy
+ education education
+ education education
    economy   economy
    economy education
        ict       ict
- education   economy
+       ict       ict
+ mechanics mechanics
+       ict       ict
    economy   economy
- mechanics   economy
+   economy education
+       ict       ict
+ education education
+ mechanics mechanics
+ mechanics mechanics
+       ict       ict
+ education education
    economy   economy
-       ict   economy
- mechanics   economy
    economy   economy
- mechanics   economy
-       ict   economy
- mechanics   economy
+ mechanics mechanics
+ education education
+   economy mechanics
+       ict       ict
+ mechanics mechanics
    economy   economy
-       ict   economy
- education   economy
+ education mechanics
+ education education
+   economy   economy
+ education education

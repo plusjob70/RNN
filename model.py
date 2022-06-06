@@ -1,7 +1,7 @@
 from unicodedata import bidirectional
 import torch
 import torch.nn as nn
-from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
+from torch.nn.utils.rnn import pack_padded_sequence
 
 
 class BaseModel(nn.Module):
@@ -22,9 +22,9 @@ class BaseModel(nn.Module):
         self.dropout = nn.Dropout(0.5)
         self.fc = nn.Linear(hidden_dim, output_size)
 
-    def load_embedding(self, embedding_file):
+    def load_embedding(self, embedding_file, device):
         print('load embedding matrix')
-        self.embedding = nn.Embedding.from_pretrained(torch.load(embedding_file).weight, freeze=True, padding_idx=0)
+        self.embedding = nn.Embedding.from_pretrained(torch.load(embedding_file, map_location=device).weight, freeze=True, padding_idx=0)
 
     # the size of x in forward is (seq_length, batch_size) if batch_first=False
     def forward(self, x, input_lengths):

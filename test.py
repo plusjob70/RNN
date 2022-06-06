@@ -60,14 +60,6 @@ def test(args, data_loader, model):
             input_lengths = torch.LongTensor([torch.max(text[j,:].nonzero())+1 for j in range(text.size(0))])
             input_lengths, sorted_idx = input_lengths.sort(0, descending=True)
 
-            # print(text.shape)
-            # print('\n=============')
-            # for k in text:
-            #     for l in k:
-            #         print(test_dataset.sentences_vocab.itow[l.item()].rjust(16), end=' ')
-            #     print('\n')
-            # print('=============/n')
-
             text = text[sorted_idx].to(args.device)
 
             label = label.squeeze()
@@ -89,11 +81,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='2022 DL Term Project #2')
     parser.add_argument('--data_dir', type=str, default='./Data')
     parser.add_argument('--batch_size', type=int, default=100, help="Batch size for training (default: 64)")
-    parser.add_argument('--vocab_size', type=int, default=30000, help="maximum vocab size")
+    parser.add_argument('--vocab_size', type=int, default=32000, help="maximum vocab size")
     parser.add_argument('--batch_first', type=bool, default=True, help="If true, then the model returns the batch first")
     parser.add_argument('--test_data',  type=str, default='test')
     ##
-    parser.add_argument('--epoch',  type=int, default=15)
+    parser.add_argument('--epoch',  type=int, default=12)
     ##
 
     args = parser.parse_args()
@@ -104,9 +96,9 @@ if __name__ == '__main__':
     # Model parameters
     input_size = args.vocab_size
     output_size = 4      # num of classes
-    embedding_dim = 256  # embedding dimension
+    embedding_dim = 512  # embedding dimension
     hidden_dim = 32      # hidden size of RNN
-    num_layers = 2
+    num_layers = 1
 
     # Make Test Loader
     test_dataset = TextDataset(args.data_dir, args.test_data, args.vocab_size)
@@ -116,49 +108,22 @@ if __name__ == '__main__':
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     args.device = device
 
-    for epoch1 in range(1, args.epoch+1):
-        for epoch2 in range(1, args.epoch+1):
-            # instantiate model
-            model = BaseModel(input_size, output_size, embedding_dim, hidden_dim, num_layers, batch_first=True)
+    # instantiate model
+    model = BaseModel(input_size, output_size, embedding_dim, hidden_dim, num_layers, batch_first=True)
 
-            try:
-                model.load_state_dict(torch.load(f'model{epoch1}.pt'))
-                model.load_embedding(f'embedding{epoch2}.pt')
-                
-            except FileNotFoundError:
-                continue
+    model.load_state_dict(torch.load('model.pt', map_location=device))
+    model.load_embedding('embedding.pt', device=device)
 
-            model = model.to(device)
-            
-            print(test_dataset.labels_vocab.itow)
-            target_names = [w for i, w in test_dataset.labels_vocab.itow.items()]
-            # Test The Model
-            pred, true = test(args, test_loader, model)
-            accuracy = (true == pred).sum() / len(pred)
-
-            
-            print(f'epoch : (model:{epoch1}, embed:{epoch2})')
-            print("Test Accuracy : {:.5f}".format(accuracy))
-            print('\n\n')
-
-
-        
-    # # instantiate model
-    # model = BaseModel(input_size, output_size, embedding_dim, hidden_dim, num_layers, batch_first=True)
-
-    # model.load_state_dict(torch.load('/content/model14.pt'))
-    # model.load_embedding('/content/embedding14.pt')
-
-    # model = model.to(device)
+    model = model.to(device)
     
-    # print(test_dataset.labels_vocab.itow)
-    # target_names = [w for i, w in test_dataset.labels_vocab.itow.items()]
-    # # Test The Model
-    # pred, true = test(args, test_loader, model)
-    # accuracy = (true == pred).sum() / len(pred)
+    print(test_dataset.labels_vocab.itow)
+    target_names = [w for i, w in test_dataset.labels_vocab.itow.items()]
+    # Test The Model
+    pred, true = test(args, test_loader, model)
+    accuracy = (true == pred).sum() / len(pred)
 
-    # print("Test Accuracy : {:.5f}".format(accuracy))
-    # print('\n\n')
+    print("Test Accuracy : {:.5f}".format(accuracy))
+    print('\n\n')
 
 
     # Save result
