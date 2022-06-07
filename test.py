@@ -56,7 +56,6 @@ def test(args, data_loader, model):
 
     with torch.no_grad():
         for i, (text, label) in enumerate(tqdm(data_loader)):
-            # text = torch.permute(text, (1,0))
             input_lengths = torch.LongTensor([torch.max(text[j,:].nonzero())+1 for j in range(text.size(0))])
             input_lengths, sorted_idx = input_lengths.sort(0, descending=True)
 
@@ -112,7 +111,7 @@ if __name__ == '__main__':
     model = BaseModel(input_size, output_size, embedding_dim, hidden_dim, num_layers, batch_first=True)
 
     model.load_state_dict(torch.load('model.pt', map_location=device))
-    model.load_embedding('embedding.pt', device=device)
+    #model.load_embedding('embedding.pt', device=device)
 
     model = model.to(device)
     

@@ -39,7 +39,6 @@ class Vocabulary:
 
     # word : 1-word
     def regularize(self, word):
-        # |(\.(?=[\s\n\r”\"]|$))
         word = re.sub(r"[\']s|’s|[(|)|,|\"|\'|‘|’|`|“|”|:|;|\[|\]|?|!]|(\.(?=[\s\n\r”\"]|$))", '', word).lower().strip()
         if word.isdigit():
             word = '<DIG>'

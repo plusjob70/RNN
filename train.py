@@ -168,7 +168,7 @@ if __name__ == '__main__':
     input_size = args.vocab_size
     output_size = 4     # num of classes
     embedding_dim = 512 # embedding dimension
-    hidden_dim = 32  # hidden size f RNN
+    hidden_dim = 32  # hidden size RNN
     num_layers = 1
 
     # Make Train & valid Loader

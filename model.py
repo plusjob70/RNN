@@ -15,15 +15,13 @@ class BaseModel(nn.Module):
         self.batch_first = batch_first
         self.hidden_dim = hidden_dim
 
-        print('create new embedding matrix')
-
         self.embedding = nn.Embedding(input_size, embedding_dim)
         self.rnn = nn.RNN(embedding_dim, hidden_dim, num_layers, bidirectional=True, batch_first=batch_first)
         self.dropout = nn.Dropout(0.5)
         self.fc = nn.Linear(hidden_dim, output_size)
 
     def load_embedding(self, embedding_file, device):
-        print('load embedding matrix')
+        print('load pretrained embedding matrix')
         self.embedding = nn.Embedding.from_pretrained(torch.load(embedding_file, map_location=device).weight, freeze=True, padding_idx=0)
 
     # the size of x in forward is (seq_length, batch_size) if batch_first=False
